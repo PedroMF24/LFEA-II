@@ -1,7 +1,7 @@
 void Analysis(){
 	//opens the file to be read
 	fstream file;
-	string filename = "NaCl-n1.xry";
+	string filename = "NaCl-n4.xry";
 	file.open(filename);
 
 	//guarantees the file is open
@@ -90,7 +90,7 @@ void Analysis(){
 	TGraph *gr = new TGraph(angle.size(), &angle[0], &rate[0]);
 	
 	gr->GetXaxis()->CenterTitle();
-	gr->SetTitle("NaCl Preliminar");
+	gr->SetTitle("NaCl n4");
 	gr->GetXaxis()->SetTitle("Angle [#circ]");
 	gr->GetYaxis()->SetTitle("Rate [1/s]");
 	gr->SetLineColor(kBlue);
@@ -100,12 +100,12 @@ void Analysis(){
 	
 	//fits the peaks into gaussians
 
-	TF1 *fit = new TF1("fit", "gaus", 6., 6.8); //Inserir formula para fazer o fit 
-	//fit->SetParameters(0.0261318, 5.39125, 0.0112239, 5.43733, 0.00893756, 5.47695, 47.2973, 265.494, 1387.72);
-	// TF1 *fit = new TF1("fit", "pol1", min, max);
-	// fit->SetParNames("Sigma_left", "Mean_left", "Sigma_mid", "Mean_mid", "Sigma_right", "Mean_right", "Const_left", "Const_mid", "Const_right");
-	gr->Fit("fit");
-	fit->Draw("same");
+	// TF1 *fit = new TF1("fit", "gaus", 6., 6.8); //Inserir formula para fazer o fit 
+	// //fit->SetParameters(0.0261318, 5.39125, 0.0112239, 5.43733, 0.00893756, 5.47695, 47.2973, 265.494, 1387.72);
+	// // TF1 *fit = new TF1("fit", "pol1", min, max);
+	// // fit->SetParNames("Sigma_left", "Mean_left", "Sigma_mid", "Mean_mid", "Sigma_right", "Mean_right", "Const_left", "Const_mid", "Const_right");
+	// gr->Fit("fit");
+	// fit->Draw("same");
 
 	// FIT LANDAU BREMSCHTRALUNG
 	// TF1 *fit = new TF1("fit", "landau", Bmin, Bmax); //Inserir formula para fazer o fit 
@@ -117,7 +117,7 @@ void Analysis(){
 
 	//saves the graph
 	c->Update();
-	c->SaveAs("NaCl-n1.png");
+	c->SaveAs("NaCl-n4.png");
 	//saves the fit results
 	
 }
