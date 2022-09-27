@@ -1,7 +1,7 @@
 void Analysis(){
 	//opens the file to be read
 	fstream file;
-	string filename = "LiF-n2.xry";
+	string filename = "Al-n3.xry";
 	file.open(filename);
 
 	//guarantees the file is open
@@ -90,7 +90,7 @@ void Analysis(){
 	TGraph *gr = new TGraph(angle.size(), &angle[0], &rate[0]);
 	
 	gr->GetXaxis()->CenterTitle();
-	gr->SetTitle("LiF n2");
+	gr->SetTitle("Al n3");
 	gr->GetXaxis()->SetTitle("Angle [#circ]");
 	gr->GetYaxis()->SetTitle("Rate [1/s]");
 	gr->SetLineColor(kBlue);
@@ -117,7 +117,7 @@ void Analysis(){
 
 	//saves the graph
 	c->Update();
-	c->SaveAs("LiF-n2.png");
+	c->SaveAs("Al-n3.png");
 	//saves the fit results
 	
 }
