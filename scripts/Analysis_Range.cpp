@@ -1,24 +1,8 @@
-void test(){
-	// get file name from user
-	// string fname;
-	// string path; 
-	// cin << "File Name: " <<  fname << endl;
-	// cin << "Folder path from LFEA-II: " << path << endl;
-
-	string name, folder, nametype;
-	cout << "\nWrite file name!\n -> ";
-	cin >> name;
-	folder = "../src/";
-	folder.append(name);
-	nametype = folder;
-	nametype.append(".xry");
-
-	fstream file;
-	file.open(nametype.c_str());
+void Analysis_Range(){
 	//opens the file to be read
-	// fstream file;
-	// string filename = "../src/NaCl-Cut.xry";
-	//file.open(filename);
+	fstream file;
+	string filename = "../src/NaCl-Cut.xry";
+	file.open(filename);
 
 	//guarantees the file is open
 	if(!file.is_open()){
@@ -39,7 +23,7 @@ void test(){
 
 	// Integral
 	double sum = 0;
-	
+
 	//reads the file
 	while(getline(file, buffer)){
 		//reads the B angle related data
@@ -99,8 +83,6 @@ void test(){
 			break;
 	}
 
-	file.close();
-
 	cout << "Integral of Rates = " << sum << endl;
 
 	//makes a vector with all the measured angles
@@ -109,12 +91,27 @@ void test(){
 	for(int i = 0; i < rate.size(); ++i)
 		angle.push_back((double)(Bmin + (float)i*Bstep));
 
+	//creates a new vector using only some data
+	float start = 8;
+	float end = 12;
+	vector<double> sampleA, sampleR;
+
+	for(int i = 0; i < rate.size(); ++i){
+		if((Bmin + (float)i*Bstep) > start){
+			sampleA.push_back(angle[i]);
+			sampleR.push_back(rate[i]);
+		}
+		if((Bmin + (float)i*Bstep) > end)
+			break;
+	}
+
 	//creates a TGraph with the data
 	TCanvas *c = new TCanvas();
-	TGraph *gr = new TGraph(angle.size(), &angle[0], &rate[0]);
+	TGraph *gr = new TGraph(sampleA.size(), &sampleA[0], &sampleR[0]);
+
 	
 	gr->GetXaxis()->CenterTitle();
-	gr->SetTitle(name.c_str());
+	gr->SetTitle("NaCl Cut");
 	gr->GetXaxis()->SetTitle("Angle [#circ]");
 	gr->GetYaxis()->SetTitle("Rate [1/s]");
 	gr->SetLineColor(kBlue);
@@ -139,20 +136,9 @@ void test(){
 	// gr->Fit("fit");
 	// fit->Draw("same");
 
-	string dir = "bin/";
-	dir.append(name);
-	dir.append(".png");
-	
-	//gPad->SetLogy();
-
-	// c->SetTickx();
-	// c->SetTicky();
-	// c->SetGridx();
-	// c->SetGridy();
-	c->SaveAs(dir.c_str());
 	//saves the graph
-	// c->Update();
-	// c->SaveAs("../bin/NaCl-Cut.png");
+	c->Update();
+	c->SaveAs("../bin/NaCl-Cut.png");
 	//saves the fit results
 	
 }
