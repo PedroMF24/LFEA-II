@@ -1,6 +1,9 @@
-Cadeira de LFEA-II 3o Ano de LEFT
+# Cadeira de LFEA-II 3o Ano de LEFT
+
+Run to compile c++ files with root libs
 
 g++ -o test test.cpp `root-config --cflags --glibs`
 
-To run Analysis.cpp, replace file names and run
+
+To run scripts
 $root Analysis.cpp
