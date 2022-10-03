@@ -1,4 +1,4 @@
-void Analysis_Range(){
+void OldAnalysis(){
 	//opens the file to be read
 	fstream file;
 	string filename = "../src/NaCl-Cut.xry";
@@ -23,7 +23,7 @@ void Analysis_Range(){
 
 	// Integral
 	double sum = 0;
-
+	
 	//reads the file
 	while(getline(file, buffer)){
 		//reads the B angle related data
@@ -91,27 +91,12 @@ void Analysis_Range(){
 	for(int i = 0; i < rate.size(); ++i)
 		angle.push_back((double)(Bmin + (float)i*Bstep));
 
-	//creates a new vector using only some data
-	float start = 8;
-	float end = 12;
-	vector<double> sampleA, sampleR;
-
-	for(int i = 0; i < rate.size(); ++i){
-		if((Bmin + (float)i*Bstep) > start){
-			sampleA.push_back(angle[i]);
-			sampleR.push_back(rate[i]);
-		}
-		if((Bmin + (float)i*Bstep) > end)
-			break;
-	}
-
 	//creates a TGraph with the data
 	TCanvas *c = new TCanvas();
-	TGraph *gr = new TGraph(sampleA.size(), &sampleA[0], &sampleR[0]);
-
+	TGraph *gr = new TGraph(angle.size(), &angle[0], &rate[0]);
 	
 	gr->GetXaxis()->CenterTitle();
-	gr->SetTitle("NaCl Cut");
+	gr->SetTitle("Empty");
 	gr->GetXaxis()->SetTitle("Angle [#circ]");
 	gr->GetYaxis()->SetTitle("Rate [1/s]");
 	gr->SetLineColor(kBlue);

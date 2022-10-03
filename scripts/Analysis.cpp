@@ -1,8 +1,24 @@
 void Analysis(){
-	//opens the file to be read
+	// get file name from user
+	// string fname;
+	// string path; 
+	// cin << "File Name: " <<  fname << endl;
+	// cin << "Folder path from LFEA-II: " << path << endl;
+
+	string name, folder, nametype;
+	cout << "\nWrite file name!\n -> ";
+	cin >> name;
+	folder = "../src/";
+	folder.append(name);
+	nametype = folder;
+	nametype.append(".xry");
+
 	fstream file;
-	string filename = "../src/NaCl-Cut.xry";
-	file.open(filename);
+	file.open(nametype.c_str());
+	//opens the file to be read
+	// fstream file;
+	// string filename = "../src/NaCl-Cut.xry";
+	//file.open(filename);
 
 	//guarantees the file is open
 	if(!file.is_open()){
@@ -83,6 +99,8 @@ void Analysis(){
 			break;
 	}
 
+	file.close();
+
 	cout << "Integral of Rates = " << sum << endl;
 
 	//makes a vector with all the measured angles
@@ -96,7 +114,7 @@ void Analysis(){
 	TGraph *gr = new TGraph(angle.size(), &angle[0], &rate[0]);
 	
 	gr->GetXaxis()->CenterTitle();
-	gr->SetTitle("Empty");
+	gr->SetTitle(name.c_str());
 	gr->GetXaxis()->SetTitle("Angle [#circ]");
 	gr->GetYaxis()->SetTitle("Rate [1/s]");
 	gr->SetLineColor(kBlue);
@@ -121,9 +139,20 @@ void Analysis(){
 	// gr->Fit("fit");
 	// fit->Draw("same");
 
+	string dir = "bin/";
+	dir.append(name);
+	dir.append(".png");
+	
+	//gPad->SetLogy();
+
+	// c->SetTickx();
+	// c->SetTicky();
+	// c->SetGridx();
+	// c->SetGridy();
+	c->SaveAs(dir.c_str());
 	//saves the graph
-	c->Update();
-	c->SaveAs("../bin/NaCl-Cut.png");
+	// c->Update();
+	// c->SaveAs("../bin/NaCl-Cut.png");
 	//saves the fit results
 	
 }
