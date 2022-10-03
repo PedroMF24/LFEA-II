@@ -7,3 +7,5 @@ g++ -o test test.cpp `root-config --cflags --glibs`
 
 To run scripts
 $root Analysis.cpp
+
+![alt text](NaCl-Preliminar.png "NaCl Spectre")
