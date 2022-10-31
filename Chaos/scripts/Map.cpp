@@ -6,16 +6,16 @@ double x;
 
     FILE *fp;
 
-    fp=fopen("ChaosData.txt","w");
+    fp=fopen("../data/ChaosRLCData.txt","w");
     // definindo o valoar inicial de mi
-    mi =  2.0;
+    mi =  1.0; // 2.0;
     for(k=0; k<499; k++)
     {
-        mi = mi + 0.005;
+        mi = mi + 0.003;
         x = 0.8;
-        for(n=1; n<=1000; n++)
+        for(n=0; n<999; n++)
         {
-            x = mi*x*(1-x);
+            x = mi*cos(x); // x = mi*x*(1-x);
             if (n>500)
                 fprintf(fp,"%f \t %lf\n", mi, x);
         }
@@ -23,7 +23,7 @@ double x;
     fclose(fp);
 
 	fstream file;
-    file.open("ChaosData.txt");
+    file.open("ChaosRLCData.txt");
     //guarantees the file is open
 	if(!file.is_open()){
 		cout << "Error: File could not be opened" << endl;
@@ -59,13 +59,15 @@ double x;
 	gr->SetTitle("ChaosMap");
 	gr->GetXaxis()->SetTitle("Time [#mu]");
 	gr->GetYaxis()->SetTitle("Channel [V]");
+    gr->SetMarkerColor(kBlue);
+    // gr->SetMarkerStyle(kFullDotSmall);
 	// gr->SetLineColor(kRed);
-	gr->SetLineWidth(2);
-	gr->Draw();
+	// gr->SetLineWidth(2);
+	gr->Draw("AP"); // No option draws lines, "AP" only draws points
 
 	//saves the graph
 	c->Update();
-	c->SaveAs("ChaosCpp.png");
+	// c->SaveAs("../bin/Chaos.png");
 
     return 0;
 

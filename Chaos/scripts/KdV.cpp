@@ -40,7 +40,7 @@ void KdV() {
         string word;
 
         while(line >> word){
-            word = word.replace(/,/g, '.')
+            // word = word.replace(/,/g, '.')
             Data[jj].push_back(stod(word)); // change word to double and input in Data )*1000.0)
             jj++;
         }
@@ -83,7 +83,9 @@ void KdV() {
     g4->GetYaxis()->SetTitle("Posicao [mm]");
     mg->Add(g4);
 
-    mg->SetTitle(name.c_str())
+    mg->SetTitle(name.c_str());
+    mg->GetXaxis()->SetTitle("Time [ms]");
+    mg->GetYaxis()->SetTitle("Position [mm]");
     mg->Draw("ACP");
 
     // gr->GetXaxis()->CenterTitle();
@@ -94,7 +96,7 @@ void KdV() {
 	// gr->SetLineWidth(2);
 	// gr->Draw();
 
-    string dir = "bin/";
+    string dir = "../bin/";
 	dir.append(name);
 	dir.append(".png");
 
