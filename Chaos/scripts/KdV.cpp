@@ -66,7 +66,7 @@ void KdV() {
     g2->GetXaxis()->SetTitle("Tempo [ms]");
     g2->GetYaxis()->SetTitle("Posicao [mm]");
     mg->Add(g2);
-    
+
     TGraph *g3 = new TGraph(Data[3].size(), &(Data[0][0]), &(Data[3][0]));
     g3->SetLineColor(kBlue);
     g3->SetLineWidth(2);

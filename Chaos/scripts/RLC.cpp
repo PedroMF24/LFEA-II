@@ -59,6 +59,9 @@ void RLC() {
 	gr->Draw();
 
 	//saves the graph
+    string dir = "../bin/RLC/";
+	dir.append(name);
+	dir.append(".png");
 	c->Update();
-	c->SaveAs("../bin/Cenas.png");
+	c->SaveAs(dir.c_str());
 }
