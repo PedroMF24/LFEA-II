@@ -3,7 +3,7 @@ void KdV() {
     string name, folder, nametype;
 	cout << "\nWrite file name!\n -> ";
 	cin >> name;
-	folder = "../data/Solitons/";
+	folder = "../data/Solitons2/";
 	folder.append(name);
 	nametype = folder;
 	nametype.append(".txt");
@@ -53,19 +53,18 @@ void KdV() {
 
     TGraph *g1 = new TGraph(Data[1].size(), &(Data[0][0]), &(Data[1][0]));
     g1->SetLineColor(kRed);
-    g1->SetLineWidth(2);
+    g1->SetLineWidth(1);
     g1->SetTitle("Posicao em X do lazer Verde em Funcao do Tempo");
-    g1->GetXaxis()->SetTitle("Tempo [ms]");
-    g1->GetYaxis()->SetTitle("Posicao [mm]");
-    mg->Add(g1);
+    g1->GetXaxis()->SetTitle("Time [ms]");
+    g1->GetYaxis()->SetTitle("Position [mm]");
+    
 
     TGraph *g2 = new TGraph(Data[2].size(), &(Data[0][0]), &(Data[2][0]));
     g2->SetLineColor(kOrange);
-    g2->SetLineWidth(2);
+    g2->SetLineWidth(1);
     g2->SetTitle("Posicao em Y do lazer Verde em Funcao do Tempo");
-    g2->GetXaxis()->SetTitle("Tempo [ms]");
-    g2->GetYaxis()->SetTitle("Posicao [mm]");
-    mg->Add(g2);
+    g2->GetXaxis()->SetTitle("Time [ms]");
+    g2->GetYaxis()->SetTitle("Position [mm]");
 
     TGraph *g3 = new TGraph(Data[3].size(), &(Data[0][0]), &(Data[3][0]));
     g3->SetLineColor(kBlue);
@@ -73,7 +72,6 @@ void KdV() {
     g3->SetTitle("Posicao em X do lazer Azul em Funcao do Tempo");
     g3->GetXaxis()->SetTitle("Tempo [ms]");
     g3->GetYaxis()->SetTitle("Posicao [mm]");
-    mg->Add(g3);
 
     TGraph *g4 = new TGraph(Data[4].size(), &(Data[0][0]), &(Data[4][0]));
     g4->SetLineColor(kViolet);
@@ -81,12 +79,15 @@ void KdV() {
     g4->SetTitle("Posicao em Y do lazer Azul em Funcao do Tempo");
     g4->GetXaxis()->SetTitle("Tempo [ms]");
     g4->GetYaxis()->SetTitle("Posicao [mm]");
-    mg->Add(g4);
 
+    mg->Add(g1);
+    mg->Add(g2);
+    //mg->Add(g3);
+    //mg->Add(g4);
     mg->SetTitle(name.c_str());
     mg->GetXaxis()->SetTitle("Time [ms]");
     mg->GetYaxis()->SetTitle("Position [mm]");
-    mg->Draw("ACP");
+    mg->Draw("AC");
 
     // gr->GetXaxis()->CenterTitle();
 	// gr->SetTitle(name.c_str());
@@ -96,9 +97,9 @@ void KdV() {
 	// gr->SetLineWidth(2);
 	// gr->Draw();
 
-    string dir = "../bin/";
+    string dir = "../bin/Solitons";
 	dir.append(name);
-	dir.append(".png");
+	dir.append("_Green.png");
 
     c->Update();
     c->SaveAs(dir.c_str());

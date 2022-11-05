@@ -22,8 +22,8 @@ public:
     int GetdataEntries() {return dataEntries;}
 
     // methods
-    void ChangeInFolder() {string newInFolder};
-    void ChangeOutFolder() {string newOutFolder};
+    void ChangeInFolder(string newInFolder);
+    void ChangeOutFolder(string newOutFolder);
 
 
 
