@@ -24,7 +24,7 @@ int main() {
 
     int iMax = 13;
     int jMax = 10;
-
+    printf("Iteration \t Delta\n");
     for (int i = 2; i <= iMax; ++i)
     {
         double a = a1 + (a1 - a2)/d1; // 0.7
@@ -58,7 +58,7 @@ int main() {
 
     // cout << blVec.size() << " " << aVec.size() << endl;  
     double alpha = 0;
-    printf("");
+    printf("Iteration \t Alpha\n");
     for (int i = 1; i <= blVec.size(); i++)
     {
         alpha = -d / (blVec[blVec.size() - 1] / blVec[blVec.size() - 2]);

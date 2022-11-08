@@ -3,6 +3,9 @@
         "iostream": "cpp",
         "initializer_list": "cpp",
         "string_view": "cpp",
-        "cmath": "cpp"
+        "cmath": "cpp",
+        "vector": "cpp",
+        "array": "cpp",
+        "utility": "cpp"
     }
 }

@@ -4,26 +4,26 @@ int k, n;
 float mi;
 double x;
 
-    // FILE *fp;
+    FILE *fp;
 
-    // fp=fopen("../data/Feigenbaum.txt","w");
-    // // definindo o valoar inicial de mi
-    // mi =  2.0; // 2.0;
-    // for(k=0; k<499; k++)
-    // {
-    //     mi = mi + 0.004;
-    //     x = 0.8;
-    //     for(n=0; n<499; n++) // n<999 - n>500
-    //     {
-    //         x = mi*x*(1-x);
-    //         if (n>434)
-    //             fprintf(fp,"%f \t %lf\n", mi, x);
-    //     }
-    // }   
-    // fclose(fp);
+    fp=fopen("../data/Feigenbaum2.txt","w");
+    // definindo o valoar inicial de mi
+    mi =  2.0; // 2.0; 0.0
+    for(k=0; k<499; k++) // 1999
+    {
+        mi = mi + 0.004; / 0.001
+        x = 1; // 0.8
+        for(n=0; n<499; n++) // n<999 - n>500
+        {
+            x = mi*x*(1-x); mi-x*x
+            if (n>434)
+                fprintf(fp,"%f \t %lf\n", mi, x);
+        }
+    }   
+    fclose(fp);
 
 	fstream file;
-    file.open("../data/Feigenbaum.txt");
+    file.open("../data/Feigenbaum2.txt");
     //guarantees the file is open
 	if(!file.is_open()){
 		cout << "Error: File could not be opened" << endl;
@@ -67,7 +67,7 @@ double x;
 
 	//saves the graph
 	c->Update();
-	c->SaveAs("../bin/Feigenbaum.png");
+	c->SaveAs("../bin/Feigenbaum2.png");
 
     return 0;
 

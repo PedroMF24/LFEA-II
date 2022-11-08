@@ -57,7 +57,6 @@ void KdV() {
     g1->SetTitle("Posicao em X do lazer Verde em Funcao do Tempo");
     g1->GetXaxis()->SetTitle("Time [ms]");
     g1->GetYaxis()->SetTitle("Position [mm]");
-    
 
     TGraph *g2 = new TGraph(Data[2].size(), &(Data[0][0]), &(Data[2][0]));
     g2->SetLineColor(kOrange);
@@ -80,10 +79,10 @@ void KdV() {
     g4->GetXaxis()->SetTitle("Tempo [ms]");
     g4->GetYaxis()->SetTitle("Posicao [mm]");
 
-    mg->Add(g1);
-    mg->Add(g2);
-    //mg->Add(g3);
-    //mg->Add(g4);
+    //mg->Add(g1);
+    //mg->Add(g2);
+    mg->Add(g3);
+    mg->Add(g4);
     mg->SetTitle(name.c_str());
     mg->GetXaxis()->SetTitle("Time [ms]");
     mg->GetYaxis()->SetTitle("Position [mm]");
@@ -97,9 +96,9 @@ void KdV() {
 	// gr->SetLineWidth(2);
 	// gr->Draw();
 
-    string dir = "../bin/Solitons";
+    string dir = "../bin/Solitons/";
 	dir.append(name);
-	dir.append("_Green.png");
+	dir.append("_Blue.png");
 
     c->Update();
     c->SaveAs(dir.c_str());
